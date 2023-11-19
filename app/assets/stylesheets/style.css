@@ -1,6 +1,5 @@
 .register-photo {
-  background:#ccccce;
-  padding:271px;
+  padding: 271px;
 }
 
 .register-photo .image-holder {
@@ -8,6 +7,7 @@
   width:auto;
   background:url(data_analytics.jpg);
   background-size:cover;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
 }
 
 .register-photo .form-container {
@@ -15,7 +15,7 @@
   max-width:900px;
   width:90%;
   margin:0 auto;
-  box-shadow:1px 1px 5px rgba(0,0,0,0.1);
+  box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2)
 }
 
 .register-photo form {
@@ -63,6 +63,7 @@
   box-shadow:none;
   margin-top:35px;
   text-shadow:none;
+  color: #000000;
   outline:none !important;
 }
 
