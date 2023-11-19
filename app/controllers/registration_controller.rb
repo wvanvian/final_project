@@ -11,16 +11,9 @@ class RegistrationController < ApplicationController
 
     @user = User.new(params.fetch(:user, {}).permit(:first_name, :last_name, :username, :email, :password))
     if @user.save
+      session[:user_id] = @user.id
       redirect_to root_path, notice: "Successfully created account"
     else
-      pp("HEREHEHRHER")
-      pp(@user)
-      if @user.errors.any?
-        @user.errors.full_messages.each do |message|
-          pp(message)
-          pp("--------------------------------")
-          end
-      end
       render :new
     end
   end
