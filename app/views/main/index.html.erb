@@ -1,10 +1,87 @@
-<div class="d-flex align-tems-center justify-content-center">
-  <h1> Welcome to Scheduled Tweets</h1>
+<head>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- Connect Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+
+    <!-- Connect Bootstrap JavaScript and its dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Connect Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async=""></script>
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/logout" style="margin-left: -180px;">
+              <img width="35" height="35" src="https://img.icons8.com/external-wanicon-two-tone-wanicon/64/external-analysis-business-model-canvas-wanicon-two-tone-wanicon.png" alt="external-analysis-business-model-canvas-wanicon-two-tone-wanicon"/>
+              Differential Mean Mapper
+        </a>
+        <% if Current.user %>
+          <a class="navbar-brand" href="/logout" style="margin-right: -1300px;">
+              <img width="28" height="28" src="https://img.icons8.com/external-tal-revivo-fresh-tal-revivo/28/external-smartphone-with-logout-option-with-sign-off-arrow-development-fresh-tal-revivo.png" alt="external-smartphone-with-logout-option-with-sign-off-arrow-development-fresh-tal-revivo"/>
+          </a>
+        <% end %>
+
+        <div class="w3-container" style="margin-right: -180px;">
+          <button onclick="document.getElementById('id01').style.display='block'" style="background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden;">
+          <img width="30" height="30" src="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/66/external-Settings-car-service-smashingstocks-flat-smashing-stocks.png" alt="external-Settings-car-service-smashingstocks-flat-smashing-stocks"/></button>
+
+          <div id="id01" class="w3-modal">
+            <div class="w3-modal-content">
+              <div class="w3-container">
+                <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <p></p>
+                <h3> Differntial Mean Mapper Application </h3>
+                <p>This application serves as a powerful tool for in-depth analysis of Impact Echo and Spectral Analysis of Surface Wave Data collected from various samples at a single location. Its primary objective is to determine the most effective combination of frequencies that yield high-quality data. By meticulously examining the data sets, the application helps researchers and engineers make informed decisions regarding the optimal frequencies to use. Additionally, it assists in the selection of the most suitable payload for future data collection endeavors, enhancing the accuracy and reliability of data-driven decisions in various fields such as construction, geophysics, and materials testing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
 </div>
-
-<% if Current.user %>
-  Logged in as: <%= Current.user.email %>
-
-  <%= button_to "Logout", logout_path, method: :delete %>
-
-<% end %>
+</body>
