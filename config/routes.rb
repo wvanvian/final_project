@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   get "sign_in", to: "session#new"
   post "sign_in", to: "session#create"
 
+  get "upload", to: "data#upload"
+
+  get "analyze", to: "data#analyze"
+
 end
