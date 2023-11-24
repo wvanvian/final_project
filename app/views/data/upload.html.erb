@@ -1,5 +1,11 @@
 <head>
 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="app/assets/stylesheets/style.css">
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Connect Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
@@ -36,18 +42,23 @@
 <body>
   <nav class="navbar navbar-custom">
     <div class="container">
-      <a class="navbar-brand" style="margin-left: -180px;">
+      <a class="navbar-brand" style="margin-left: -180px; color:white;">
           <img width="35" height="35" src="https://img.icons8.com/external-wanicon-two-tone-wanicon/64/external-analysis-business-model-canvas-wanicon-two-tone-wanicon.png" alt="external-analysis-business-model-canvas-wanicon-two-tone-wanicon"/>
               Differential Mean Mapper
       </a>
-      <a class="navbar-brand" href="/logout" style="margin-right: -1300px;">
-        <div class="myDIV"><img width="30" height="30" src="assets/logout.png"></div>
+      <a class="navbar-brand" href="/analyze" style="margin-right: -1230px;">
+        <div class="icon_info"><img width="30" height="30" src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/64/external-analysis-digital-marketing-flatart-icons-flat-flatarticons.png" alt="external-analysis-digital-marketing-flatart-icons-flat-flatarticons"/></div>
+        <div class="hide">Analyze</div>
+      </a>
+      <a class="navbar-brand" href="/logout" style="margin-right: -1253px;">
+        <div class="icon_info"><img width="30" height="30" src="assets/logout.png"></div>
         <div class="hide">Logout</div>
       </a>
       <div class="w3-container" style="margin-right: -180px;">
         <button onclick="document.getElementById('id01').style.display='block'" style="background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden;">
         <div class="icon_info"><img width="30" height="30" src="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/66/external-Settings-car-service-smashingstocks-flat-smashing-stocks.png" alt="external-Settings-car-service-smashingstocks-flat-smashing-stocks"/></div>
         <div class="hide">Info</div>
+        </button>
         <div id="id01" class="w3-modal">
           <div class="w3-modal-content">
             <div class="w3-container">
@@ -69,30 +80,19 @@
     </div>
   </nav>
 
-  <div class="row row-cols-1 row-cols-md-2 g-3">
-    <div class="col">
-      <div class="item" onclick="this.querySelector('a').click(); return true;">
-        <div class="card" style="margin: 110px 17px 17px 17px;">
-          <img src="assets/cloud.jpg" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Data Uploader</h5>
-            <p class="card-text">This application functionality is designed to handle the uploading and local storage of HDF5 files containing processed signal data obtained from both Impact Echo and Spectral Analysis of Surface Waves data collection processes. Users can conveniently upload these files to the application, which then securely stores them on the local system. This storage capability ensures that the valuable processed signal data is readily accessible and can be efficiently managed for further analysis and reference.</p>
-            <a href="/upload"></a>
-          </div>
-        </div>
+  <div class="register-photo">
+        <div class="form-container">
+            <div class="image-holder"></div>
+            <%= form_with model: @file_upload, url:sign_in_path do |form| %>              
+              <h2 class="text-center"><strong>Upload</strong> file.</h2>
+              <div class="form-group"><%= file_upload.text_field :filename, placeholder: "Filename", class: "form-control" %></div>
+              <div class="form-group"><%= file_upload.file :last_name, class: "custom-file-input" %></div>
+              <div class="form-group"><%= file_upload.submit "Submit Request", class: "btn btn-primary btn-block" %></div>
+              <a href="/sign_in" class="already">Do you already have an account? Log in here.</a></form>
+            <% end %>
         </div>
     </div>
-    <div class="col">
-      <div class="item" onclick="this.querySelector('a').click(); return true;">
-        <div class="card" style="margin: 110px 17px -10px -10px; width: 98.7%">
-          <img src="assets/data-analytics_stats.jpg" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Data Analyzer</h5>
-            <p class="card-text">This application feature is dedicated to handling and analyzing locally obtained HDF5 files containing processed signal data from Impact Echo and Spectral Analysis of Surface Waves measurements. It involves reading, modifying, and conducting a thorough analysis with the primary aim of assessing statistical similarity between two datasets. This capability is pivotal for data-driven decision-making, empowering researchers and engineers to evaluate dataset comparability across diverse applications, including construction, geophysics, and materials testing.</p>
-            <a href="/analyze"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
 </body>
