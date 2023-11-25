@@ -11,9 +11,6 @@ class DataController < ApplicationController
   end
 
   def analyze_file
-    pp(params[:dropdown1])
-    pp(params[:dropdown2])
-
     filename_one = params[:dropdown1]
     filename_two = params[:dropdown1]
     path_one = Rails.root.join("public/uploads/files/", filename_one)
@@ -272,9 +269,5 @@ class DataController < ApplicationController
 
     amplitude_heatmap.write('app/assets/stylesheets/amplitude.png')
   end
-
-    
-
-
 
 end
