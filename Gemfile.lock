@@ -138,7 +138,7 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
     faraday-retry (1.0.3)
-    ffi (1.15.5)
+    ffi (1.0.11)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
@@ -153,7 +153,11 @@ GEM
       octokit (~> 5.0)
       oj (~> 3.13.12)
       rake (~> 13)
+    gruff (0.23.0)
+      histogram
+      rmagick (>= 5.3)
     hashdiff (1.0.1)
+    histogram (0.2.4.1)
     htmlbeautifier (1.4.2)
     http (5.1.1)
       addressable (~> 2.8)
@@ -225,6 +229,7 @@ GEM
     oj (3.13.23)
     orm_adapter (0.5.0)
     pg (1.4.6)
+    pkg-config (1.5.6)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -291,6 +296,8 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.5)
+    rmagick (5.3.0)
+      pkg-config (~> 1.4)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -417,6 +424,7 @@ DEPENDENCIES
   draft_matchers
   faker
   grade_runner
+  gruff
   htmlbeautifier
   http
   importmap-rails
@@ -448,4 +456,4 @@ RUBY VERSION
    ruby 3.2.1p31
 
 BUNDLED WITH
-   2.4.6
+   2.4.22

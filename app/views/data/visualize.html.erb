@@ -46,11 +46,15 @@
           <img width="35" height="35" src="https://img.icons8.com/external-wanicon-two-tone-wanicon/64/external-analysis-business-model-canvas-wanicon-two-tone-wanicon.png" alt="external-analysis-business-model-canvas-wanicon-two-tone-wanicon"/>
               Differential Mean Mapper
       </a>
-      <a class="navbar-brand" href="/analyze" style="margin-right: -1230px;">
+      <a class="navbar-brand" href="/analyze" style="margin-right: -1170px;">
         <div class="icon_info"><img width="30" height="30" src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/64/external-analysis-digital-marketing-flatart-icons-flat-flatarticons.png" alt="external-analysis-digital-marketing-flatart-icons-flat-flatarticons"/></div>
         <div class="hide">Analyze</div>
       </a>
-      <a class="navbar-brand" href="/logout" style="margin-right: -1253px;">
+      <a class="navbar-brand" href="/upload" style="margin-right: -1175px;">
+        <div class="icon_info"><img width="30" height="30" src="https://img.icons8.com/external-others-cattaleeya-thongsriphong/64/external-Upload-network-technology-color-line-others-cattaleeya-thongsriphong.png" alt="external-Upload-network-technology-color-line-others-cattaleeya-thongsriphong"/></div>
+        <div class="hide">Upload</div>
+      </a>
+      <a class="navbar-brand" href="/logout" style="margin-right: -1200px;">
         <div class="icon_info"><img width="30" height="30" src="assets/logout.png"></div>
         <div class="hide">Logout</div>
       </a>
@@ -80,18 +84,7 @@
     </div>
   </nav>
 
-  <div class="register-photo">
-    <div class="form-container">
-            <div class="image-holder-upload"></div>
-            <%= form_tag upload_file_path, method: :post, multipart: true do %>
-            <h2 class="text-center"><strong>Upload</strong> CSV file.</h2>
-            <%= file_field_tag :file, placeholder: "", accept: ".csv" %>
-            <div class="form-group"><input type="submit" name="commit" value="Submit" class="btn btn-primary btn-block"></div>
-            <% end %>
-    </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+  <h1> <%= @filename %> </h1>
 
 
 </body>
