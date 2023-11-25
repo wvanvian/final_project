@@ -13,6 +13,24 @@ class DataController < ApplicationController
 
   def analyze_file
     pp("ANALYZING FILE")
+    pp(params[:dropdown1])
+    pp(params[:dropdown2])
+
+    filename_one = params[:dropdown1]
+    filename_two = params[:dropdown1]
+    path_one = Rails.root.join("public/uploads/files/", filename_one)
+    path_two = Rails.root.join("public/uploads/files/", filename_two)
+    csv_data_one = CSV.parse(File.read("#{path_one}"), headers: true)
+    csv_data_two = CSV.parse(File.read("#{path_two}"), headers: true)
+    csv_data_one.by_col!
+    csv_data_two.by_col!
+
+    # Extract data from CSV columns
+    thickness_data_one = csv_data_one['thickness'].map(&:to_f)
+    thickness_data_two = csv_data_one['thickness'].map(&:to_f)
+
+    get_boxplot(thickness_data_one, thickness_data_two, filename_one, filename_two)
+
   end
 
   def file_validation(ext)
@@ -41,8 +59,8 @@ class DataController < ApplicationController
   end
 
   def visualize
-    @filename = params[:param_name]
-    path = Rails.root.join("public/uploads/files/", @filename)
+    filename = params[:param_name]
+    path = Rails.root.join("public/uploads/files/", filename)
     csv_data = CSV.parse(File.read("#{path}"), headers: true)
     csv_data.by_col!
 
@@ -127,6 +145,35 @@ class DataController < ApplicationController
     get_amplitude_heatmap(high_x, high_y, low_x, low_y, x_max, x_min, amplitude_max.to_i)
 
 
+  end
+
+
+  def get_boxplot(thickness_data_one, thickness_data_two, filename_one, filename_two)
+    box_plot = Gruff::Box.new
+    box_plot.data "#{filename_one}", thickness_data_one
+    box_plot.data "#{filename_two}", thickness_data_two
+
+    box_plot.theme = {
+      colors: [
+        "#007BFF",  # Electric Blue
+        "#00C853",  # Emerald Green
+        "#7E57C2",  # Royal Purple
+        "#FF6B6B",  # Sunset Orange
+        "#64FFDA",  # Turquoise
+        "#FFD166",  # Lemon Yellow
+        "#FF2E63",  # Magenta
+        "#00A8E8"   # Deep Sky Blue
+      ],
+      marker_color: 'black',
+      font_color: '#F0F0F0',
+      font: '9px',
+      background_colors: 'black'
+    }.freeze
+    box_plot.legend_font_size = 9
+    box_plot.legend_at_bottom = true
+    box_plot.marker_font_size = 9
+
+    box_plot.write("box_plot.png")
   end
 
   def get_thickness_heatmap(below_six_x, below_six_y, six_nine_x, six_nine_y, nine_twelve_x, nine_twelve_y, twelve_fifteen_x, twelve_fifteen_y, fifteen_eighteen_x, fifteen_eighteen_y, eighteen_twentyone_x, eighteen_twentyone_y, twentyone_twentyfour_x, twentyone_twentyfour_y, above_twentyfour_x, above_twentyfour_y, x_min, x_max)
