@@ -35,6 +35,25 @@
       font-size: 9px;
       color: white;
     }
+
+    .container_image {
+      width: 50%;
+      position: relative;
+      text-align: center;
+      vertical-align: middle;
+      color: white;
+    }
+
+    /* Bottom left text */
+    .top-center {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      font-size: 30px;
+      font: var(--bs-font-sans-serif);
+      text-align: center;
+      color: #F0F0F0;
+    }
   </style>
 
 </head>
@@ -84,7 +103,17 @@
     </div>
   </nav>
 
-  <h1> <%= @filename %> </h1>
+
+  <div class="row">
+    <div class="container_image">
+      <img src="assets/thickness.png" alt="Snow">
+      <div class="top-center">Top Left</div>
+    </div>
+    <div class="container_image" style="vertical-align: middle;">
+      <img src="assets/thickness.png" alt="Snow"">
+      <div class="top-center" style="font-size: 23px">Top Left</div>
+    </div>
+  </div>
 
 
 </body>
