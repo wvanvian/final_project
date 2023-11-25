@@ -192,6 +192,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    leaflet-sidebar-rails (0.2.0)
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
@@ -429,6 +430,7 @@ DEPENDENCIES
   http
   importmap-rails
   jbuilder
+  leaflet-sidebar-rails
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)

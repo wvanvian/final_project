@@ -109,4 +109,4 @@ group :test do
 end
 
 gem "gruff"
-gem 'leaflet-sidebar-rails'
+gem "leaflet-sidebar-rails"

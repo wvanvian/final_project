@@ -8,11 +8,9 @@ class DataController < ApplicationController
   FILE_EXT = [".csv"]
 
   def analyze
-    pp("HERE ANALYZE")
   end
 
   def analyze_file
-    pp("ANALYZING FILE")
     pp(params[:dropdown1])
     pp(params[:dropdown2])
 
@@ -30,8 +28,36 @@ class DataController < ApplicationController
     thickness_data_two = csv_data_one['thickness'].map(&:to_f)
 
     get_boxplot(thickness_data_one, thickness_data_two, filename_one, filename_two)
+    redirect_to("/analyze")
 
   end
+
+  def mean(array)
+    array.sum.to_f / array.size
+  end
+  
+  def variance(array)
+    m = mean(array)
+    sum = array.reduce(0) { |acc, i| acc + (i - m) ** 2 }
+    sum / (array.size - 1)
+  end
+  
+  def welchs_t_test(sample1, sample2)
+    mean1 = mean(sample1)
+    mean2 = mean(sample2)
+    variance1 = variance(sample1)
+    variance2 = variance(sample2)
+    n1 = sample1.size
+    n2 = sample2.size
+  
+    t = (mean1 - mean2) / Math.sqrt((variance1 / n1) + (variance2 / n2))
+  
+    # Degrees of freedom
+    df = ((variance1 / n1) + (variance2 / n2))**2 / (((variance1 / n1)**2 / (n1 - 1)) + ((variance2 / n2)**2 / (n2 - 1)))
+  
+    return t, df
+  end
+
 
   def file_validation(ext)
     raise "Not allowed" unless FILE_EXT.include?(ext)
@@ -153,16 +179,13 @@ class DataController < ApplicationController
     box_plot.data "#{filename_one}", thickness_data_one
     box_plot.data "#{filename_two}", thickness_data_two
 
+    max_one = thickness_data_one.max
+    max_two = thickness_data_two.max
+
     box_plot.theme = {
       colors: [
-        "#007BFF",  # Electric Blue
-        "#00C853",  # Emerald Green
-        "#7E57C2",  # Royal Purple
-        "#FF6B6B",  # Sunset Orange
-        "#64FFDA",  # Turquoise
-        "#FFD166",  # Lemon Yellow
         "#FF2E63",  # Magenta
-        "#00A8E8"   # Deep Sky Blue
+        "#FFD166",  # Lemon Yellow
       ],
       marker_color: 'black',
       font_color: '#F0F0F0',
@@ -172,6 +195,13 @@ class DataController < ApplicationController
     box_plot.legend_font_size = 9
     box_plot.legend_at_bottom = true
     box_plot.marker_font_size = 9
+    box_plot.maximum_value = max_one > max_two ? max_one : max_two
+    box_plot.minimum_value = 0
+
+    # Perform Welch's t-test
+    t_statistic, degrees_of_freedom = welchs_t_test(thickness_data_one, thickness_data_two)
+    box_plot.title = "Box Plot Comparison of Two Samples with #{degrees_of_freedom} Degrees of Freedom and a t-Statistic of #{t_statistic}"
+    box_plot.title_font_size=15
 
     box_plot.write("app/assets/stylesheets/box_plot.png")
   end
