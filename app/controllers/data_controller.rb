@@ -173,7 +173,7 @@ class DataController < ApplicationController
     box_plot.legend_at_bottom = true
     box_plot.marker_font_size = 9
 
-    box_plot.write("box_plot.png")
+    box_plot.write("app/assets/stylesheets/box_plot.png")
   end
 
   def get_thickness_heatmap(below_six_x, below_six_y, six_nine_x, six_nine_y, nine_twelve_x, nine_twelve_y, twelve_fifteen_x, twelve_fifteen_y, fifteen_eighteen_x, fifteen_eighteen_y, eighteen_twentyone_x, eighteen_twentyone_y, twentyone_twentyfour_x, twentyone_twentyfour_y, above_twentyfour_x, above_twentyfour_y, x_min, x_max)
