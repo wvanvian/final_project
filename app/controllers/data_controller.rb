@@ -11,6 +11,10 @@ class DataController < ApplicationController
     pp("HERE ANALYZE")
   end
 
+  def analyze_file
+    pp("ANALYZING FILE")
+  end
+
   def file_validation(ext)
     raise "Not allowed" unless FILE_EXT.include?(ext)
   end
