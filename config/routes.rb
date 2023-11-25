@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post "upload_file", to: "data#upload_file"
 
   get "analyze", to: "data#analyze"
+  post "analyze_file", to: "data#analyze_file"
 
   get "visualize", to: "data#visualize"
 

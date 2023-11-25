@@ -29,6 +29,89 @@
       font-size: 9px;
       color: white;
     }
+
+    /* Basic styles for the sidebar */
+    .sidebar {
+        height: 100%;
+        width: 0; /* Initially set to 0 width */
+        position: fixed;
+        z-index: 1;
+        top: 50px;
+        left: 0;
+        background-color: black;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    /* Links inside the sidebar */
+    .sidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    /* When hovered over the links */
+    .sidebar a:hover {
+        color: #f1f1f1;
+    }
+
+    /* The button used to open the sidebar */
+    .sidebar-toggle {
+        position: absolute;
+        top: 20px;
+        left: 35px;
+        font-size: 20px;
+        margin-left: 50px;
+        cursor: pointer;
+        color: rgba(0,0,0,0.0);
+    }
+
+    /* Media query for smaller screens */
+    @media screen and (max-height: 450px) {
+        .sidebar {padding-top: 15px;}
+        .sidebar a {font-size: 18px;}
+    }
+
+
+    .sidebar .dropdown {
+        width: 80%; /* Adjust width of dropdowns */
+        left: 10%;
+        margin-bottom: 25px;
+        margin-top: 15px;
+    }
+
+    .sidebar .dropdown label {
+        display: block;
+        margin-bottom: 10px;
+        color: white;
+        text-align: center;
+    }
+
+    .sidebar .dropdown select {
+        width: 100%;
+        padding: 10px;
+        background-color: #D3D3D3;
+    }
+
+    .submit-button {
+        background-color: #cde347;
+        border: none;
+        width: 75px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        color: black;
+        margin-left: 180px;
+    }
+
+    .submit-button:hover {
+        background-color: #cde347;
+    }
+
   </style>
 
 </head>
@@ -73,4 +156,51 @@
       </div>
     </div>
   </nav>
+
+
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+    <%= form_with(url: analyze_file_path, method: :post) do %>
+      <!-- Dropdown 1 -->
+      <div class="dropdown">
+          <%= label_tag :dropdown1, 'Dropdown 1:' %>
+          <%= select_tag :dropdown1, options_for_select(files_in_directory('uploads/files')) %>
+      </div>
+
+      <!-- Dropdown 2 -->
+      <div class="dropdown">
+          <%= label_tag :dropdown2, 'Dropdown 2:' %>
+          <%= select_tag :dropdown2, options_for_select(files_in_directory('uploads/files')) %>
+      </div>
+
+      <!-- Submit Button -->
+      <%= submit_tag "Submit", class: "submit-button" %>
+    <% end %>
+
+    <!-- Add your sidebar links here -->
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+</div>
+
+<div id="main">
+    <%= yield %>
+</div>
+
+<script>
+  function openNav() {
+      document.getElementById("mySidebar").style.width = "450px";
+      document.getElementById("main").style.marginLeft = "450px";
+  }
+
+  function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.marginLeft= "0";
+  }
+</script>
+
+<span class="sidebar-toggle" onclick="openNav()">Differential Mean Mapper</span>
+
 </body>

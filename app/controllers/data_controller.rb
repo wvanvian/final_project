@@ -120,7 +120,7 @@ class DataController < ApplicationController
     end
 
     get_thickness_heatmap(below_six_x, below_six_y, six_nine_x, six_nine_y, nine_twelve_x, nine_twelve_y, twelve_fifteen_x, twelve_fifteen_y, fifteen_eighteen_x, fifteen_eighteen_y, eighteen_twentyone_x, eighteen_twentyone_y, twentyone_twentyfour_x, twentyone_twentyfour_y, above_twentyfour_x, above_twentyfour_y, x_min, x_max)
-    get_amplitude_heatmap(high_x, high_y, low_x, low_y, x_max, x_min)
+    get_amplitude_heatmap(high_x, high_y, low_x, low_y, x_max, x_min, amplitude_max.to_i)
 
 
   end
@@ -129,14 +129,14 @@ class DataController < ApplicationController
     # Create a Gruff::Scatter plot
     thickness_heatmap = Gruff::Scatter.new(800)
 
-    thickness_heatmap.data "< 6in", below_six_x, below_six_y
-    thickness_heatmap.data '< 9in', six_nine_x, six_nine_y
-    thickness_heatmap.data '< 12in', nine_twelve_x, nine_twelve_y
-    thickness_heatmap.data '< 15in', twelve_fifteen_x, twelve_fifteen_y
-    thickness_heatmap.data '< 18in', fifteen_eighteen_x, fifteen_eighteen_y
-    thickness_heatmap.data '< 21in', eighteen_twentyone_x, eighteen_twentyone_y
-    thickness_heatmap.data '< 24in', twentyone_twentyfour_x, twentyone_twentyfour_y
-    thickness_heatmap.data '>= 24in', above_twentyfour_x, above_twentyfour_y
+    thickness_heatmap.data "< 6 in", below_six_x, below_six_y
+    thickness_heatmap.data '< 9 in', six_nine_x, six_nine_y
+    thickness_heatmap.data '< 12 in', nine_twelve_x, nine_twelve_y
+    thickness_heatmap.data '< 15 in', twelve_fifteen_x, twelve_fifteen_y
+    thickness_heatmap.data '< 18 in', fifteen_eighteen_x, fifteen_eighteen_y
+    thickness_heatmap.data '< 21 in', eighteen_twentyone_x, eighteen_twentyone_y
+    thickness_heatmap.data '< 24 in', twentyone_twentyfour_x, twentyone_twentyfour_y
+    thickness_heatmap.data '>= 24 in', above_twentyfour_x, above_twentyfour_y
 
 
     thickness_heatmap.minimum_x_value = x_min - 0.05
@@ -166,11 +166,11 @@ class DataController < ApplicationController
   end
 
 
-  def get_amplitude_heatmap(high_x, high_y, low_x, low_y, x_max, x_min)
+  def get_amplitude_heatmap(high_x, high_y, low_x, low_y, x_max, x_min, amplitude_max)
     amplitude_heatmap = Gruff::Scatter.new(800)
 
-    amplitude_heatmap.data "< 1M Mv", high_x, high_y
-    amplitude_heatmap.data '> 1M Mv', low_x, low_y
+    amplitude_heatmap.data "< #{amplitude_max / 2} mV", high_x, high_y
+    amplitude_heatmap.data ">= #{amplitude_max / 2} mV", low_x, low_y
 
     amplitude_heatmap.minimum_x_value = x_min - 0.05
     amplitude_heatmap.maximum_x_value = x_max + 0.05
