@@ -1,0 +1,20 @@
+/* Modify the background color */
+.navbar-custom {
+  background-color: black;
+}
+
+/* Modify brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: white;
+}
+
+.hide {
+  display: none;
+}
+  
+.icon_info:hover + .hide {
+  display: block;
+  font-size: 9px;
+  color: white;
+}

@@ -4,7 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Untitled</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="app/assets/stylesheets/style.css">
+
+  <%= stylesheet_link_tag 'main', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Connect Bootstrap CSS -->
@@ -15,27 +16,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
 
   <style>
-    /* Modify the background color */
-    .navbar-custom {
-        background-color: black;
-    }
-    /* Modify brand and text color */
-         
-    .navbar-custom .navbar-brand,
-    .navbar-custom .navbar-text {
-      color: white;
-    }
-
-    .hide {
-      display: none;
-    }
-        
-    .icon_info:hover + .hide {
-      display: block;
-      font-size: 9px;
-      color: white;
-    }
-
     .container_image {
       margin-top: 10%;
       width: 50%;

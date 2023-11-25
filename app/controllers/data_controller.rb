@@ -12,7 +12,7 @@ class DataController < ApplicationController
 
   def analyze_file
     filename_one = params[:dropdown1]
-    filename_two = params[:dropdown1]
+    filename_two = params[:dropdown2]
     path_one = Rails.root.join("public/uploads/files/", filename_one)
     path_two = Rails.root.join("public/uploads/files/", filename_two)
     csv_data_one = CSV.parse(File.read("#{path_one}"), headers: true)
@@ -22,11 +22,11 @@ class DataController < ApplicationController
 
     # Extract data from CSV columns
     thickness_data_one = csv_data_one['thickness'].map(&:to_f)
-    thickness_data_two = csv_data_one['thickness'].map(&:to_f)
+    thickness_data_two = csv_data_two['thickness'].map(&:to_f)
 
     get_boxplot(thickness_data_one, thickness_data_two, filename_one, filename_two)
-    redirect_to("/analyze")
-
+    
+    redirect_to request.referer || analyze_path
   end
 
   def mean(array)
@@ -197,7 +197,7 @@ class DataController < ApplicationController
 
     # Perform Welch's t-test
     t_statistic, degrees_of_freedom = welchs_t_test(thickness_data_one, thickness_data_two)
-    box_plot.title = "Box Plot Comparison of Two Samples with #{degrees_of_freedom} Degrees of Freedom and a t-Statistic of #{t_statistic}"
+    box_plot.title = "Box Plot Comparison of Two Samples with #{degrees_of_freedom.to_i} Degrees of Freedom and a t-Statistic of #{t_statistic.round(2)}"
     box_plot.title_font_size=15
 
     box_plot.write("app/assets/stylesheets/box_plot.png")
